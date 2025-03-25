@@ -40,7 +40,6 @@
     in
     {
       # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#Shriyanss-MacBook-Pro
       darwinConfigurations.${hostname} = nix-darwin.lib.darwinSystem {
         inherit system;
         specialArgs = { inherit common; };
