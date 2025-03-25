@@ -2,14 +2,31 @@
   config,
   pkgs,
   lib,
+  common,
   ...
 }:
 
 {
-  home.username = "shriyans";
-  home.homeDirectory = "/Users/shriyans";
+  home.username = common.username;
+  home.homeDirectory = common.homeDirectory;
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
+  # Home-manager packages
+  home.packages = [
+    pkgs.mysides
+  ];
+
+  # Dotfiles
+  home.file = {
+    ".zshrc".source = ./dotfiles/.zshrc;
+    ".finicky.js".source = ./dotfiles/.finicky.js;
+    ".config" = {
+      source = ./dotfiles/config;
+      recursive = true;
+    };
+  };
+
+  # Directory creation and sidebar setup
   home.activation = {
     createUserDirectories = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       # Create directories if they don't exist
@@ -37,27 +54,17 @@
     '';
   };
 
-  home.packages = [
-    pkgs.mysides
-  ];
-
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    ".zshrc".source = ./dotfiles/.zshrc;
-    ".finicky.js".source = ./dotfiles/.finicky.js;
-    ".config" = {
-      source = ./dotfiles/config;
-      recursive = true;
-    };
-  };
-
+  # Session variables and paths
   home.sessionVariables = { };
   home.sessionPath = [
     "/run/current-system/sw/bin"
     "$HOME/.nix-profile/bin"
   ];
+
+  # Enable home-manager
   programs.home-manager.enable = true;
+
+  # ZSH configuration
   programs.zsh = {
     enable = true;
     initExtra = ''
