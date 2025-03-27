@@ -21,6 +21,7 @@ in
     devenv
     devbox
     direnv
+    nixd
     nixfmt-rfc-style
 
     # Command-line utilities
