@@ -38,6 +38,7 @@
       "vlc"
       "webtorrent"
       "cursor"
+      "zed"
     ];
 
     # Mac App Store applications
