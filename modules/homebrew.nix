@@ -40,6 +40,7 @@
       "cursor"
       "zed"
       "calendr"
+      "claude"
     ];
 
     # Mac App Store applications

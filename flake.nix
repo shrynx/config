@@ -85,7 +85,7 @@
 
           # Import all modular configurations
           ./modules/homebrew.nix
-          ./modules/packages/default.nix
+          ./modules/packages
           ./modules/system-config.nix
           ./modules/system-defaults.nix
 

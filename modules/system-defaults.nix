@@ -63,43 +63,47 @@
     };
 
     # Dock configuration
-    dock = {
-      # Dock behavior
-      autohide = true;
-      minimize-to-application = true;
-      mru-spaces = false;
-      show-recents = false;
-      static-only = false;
-      wvous-br-corner = 13;
+    dock =
+      let
+        app-folder = "/Applications/";
+      in
+      {
+        # Dock behavior
+        autohide = true;
+        minimize-to-application = true;
+        mru-spaces = false;
+        show-recents = false;
+        static-only = false;
+        wvous-br-corner = 13;
 
-      # Folders in dock
-      persistent-others = [
-        "${common.homeDirectory}/Downloads"
-        "~/Applications"
-      ];
+        # Folders in dock
+        persistent-others = [
+          "${common.homeDirectory}/Downloads"
+          app-folder
+        ];
 
-      # Apps in dock
-      persistent-apps = [
-        {
-          spacer = {
-            small = true;
-          };
-        }
-        "/Applications/WhatsApp.app"
-        "/Applications/Spotify.app"
-        "/Applications/Google Chrome.app"
-        "/Applications/GitKraken.app"
-        "/Applications/Warp.app"
-        "/Applications/Visual Studio Code.app"
-        "/Applications/Cursor.app"
-        "/Applications/IntelliJ IDEA CE.app"
-        "/Applications/Mattermost.app"
-        {
-          spacer = {
-            small = true;
-          };
-        }
-      ];
-    };
+        # Apps in dock
+        persistent-apps =
+          let
+            apps = [
+              "WhatsApp"
+              "Spotify"
+              "Google Chrome"
+              "GitKraken"
+              "Warp"
+              "Visual Studio Code"
+              "Cursor"
+              "IntelliJ IDEA CE"
+              "Mattermost"
+              "Claude"
+            ];
+            small-spacer = {
+              spacer = {
+                small = true;
+              };
+            };
+          in
+          [ small-spacer ] ++ (map (name: app-folder + name + ".app") apps) ++ [ small-spacer ];
+      };
   };
 }
