@@ -8,9 +8,32 @@
 {
   system.defaults = {
     # Advertising preferences
-    CustomUserPreferences."com.apple.AdLib" = {
-      allowApplePersonalizedAdvertising = false;
-      allowIdentifierForAdvertising = false;
+    CustomUserPreferences = {
+      "com.apple.AdLib" = {
+        allowApplePersonalizedAdvertising = false;
+        allowIdentifierForAdvertising = false;
+      };
+
+      "com.apple.Siri" = {
+        SiriPrefStashedStatusMenuVisible = 0;
+        StatusMenuVisible = 0;
+        VoiceTriggerUserEnabled = 0;
+      };
+
+      "~/Library/Preferences/ByHost/com.apple.Spotlight.plist" = {
+        "MenuItemHidden" = true;
+      };
+
+    };
+
+    menuExtraClock = {
+      IsAnalog = false;
+      Show24Hour = true;
+      ShowAMPM = false;
+      ShowDate = 2;
+      ShowDayOfMonth = false;
+      ShowDayOfWeek = false;
+      ShowSeconds = false;
     };
 
     # Screenshot configuration
@@ -29,6 +52,9 @@
     # Login window settings
     loginwindow.GuestEnabled = false;
 
+    # Battery
+    controlcenter.BatteryShowPercentage = true;
+
     # Global domain settings
     NSGlobalDomain = {
       AppleICUForce24HourTime = true;
@@ -44,6 +70,7 @@
       mru-spaces = false;
       show-recents = false;
       static-only = false;
+      wvous-br-corner = 13;
 
       # Folders in dock
       persistent-others = [
