@@ -93,6 +93,7 @@
               "Warp"
               "Visual Studio Code"
               "Cursor"
+              "Zed"
               "IntelliJ IDEA CE"
               "Mattermost"
               "Claude"
