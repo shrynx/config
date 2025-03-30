@@ -87,7 +87,7 @@
           ./modules/homebrew.nix
           ./modules/packages
           ./modules/system-config.nix
-          ./modules/system-defaults.nix
+          ./modules/macos-defaults.nix
 
           # Set Git commit hash for darwin-version
           {
