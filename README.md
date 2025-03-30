@@ -13,7 +13,7 @@ This configuration follows a simple modular structure:
 ├── modules
 │   ├── homebrew.nix           # All Homebrew-related configuration
 │   ├── packages               # Nix packages configuration
-│   ├── system-defaults.nix    # Macos system defaults and preferences
+│   ├── macos-defaults.nix     # Macos system defaults and preferences
 │   └── system-config.nix      # Nix system configuration
 ├── flake.nix                  # Main flake entry point
 ├── home.nix                   # Home-manager configuration
