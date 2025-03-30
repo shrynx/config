@@ -15,6 +15,10 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    homebrew-pakerwreah = {
+      url = "github:pakerwreah/homebrew-calendr";
+      flake = false;
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,6 +33,7 @@
       nix-homebrew,
       homebrew-core,
       homebrew-cask,
+      homebrew-pakerwreah,
       nixpkgs,
       home-manager,
       ...
@@ -44,6 +49,12 @@
         inherit system;
         specialArgs = { inherit common; };
         modules = [
+          (
+            { config, ... }:
+            {
+              homebrew.taps = builtins.attrNames config.nix-homebrew.taps;
+            }
+          )
           # Mac app util
           mac-app-util.darwinModules.default
 
@@ -57,6 +68,7 @@
               taps = {
                 "homebrew/homebrew-core" = homebrew-core;
                 "homebrew/homebrew-cask" = homebrew-cask;
+                "pakerwreah/homebrew-calendr" = homebrew-pakerwreah;
               };
               mutableTaps = false;
             };
