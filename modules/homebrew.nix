@@ -40,6 +40,7 @@
       "cursor"
       "zed"
       "calendr"
+      "topnotch"
       "claude"
     ];
 
