@@ -39,6 +39,7 @@
       "webtorrent"
       "cursor"
       "zed"
+      "calendr"
     ];
 
     # Mac App Store applications

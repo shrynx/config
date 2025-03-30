@@ -121,6 +121,22 @@
         "type": "github"
       }
     },
+    "homebrew-pakerwreah": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740945505,
+        "narHash": "sha256-KaM/T3lC2NRe8zRyFpR9YaRT/w4xX0++tv6zpblQW4I=",
+        "owner": "pakerwreah",
+        "repo": "homebrew-calendr",
+        "rev": "961871ba242ed050a079a1fd76d6a03bb231c1b7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pakerwreah",
+        "repo": "homebrew-calendr",
+        "type": "github"
+      }
+    },
     "mac-app-util": {
       "inputs": {
         "cl-nix-lite": "cl-nix-lite",
@@ -268,6 +284,7 @@
         "home-manager": "home-manager",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
+        "homebrew-pakerwreah": "homebrew-pakerwreah",
         "mac-app-util": "mac-app-util",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
