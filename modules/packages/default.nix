@@ -41,5 +41,8 @@ in
   # Fonts
   fonts.packages = with pkgs; [
     nerd-fonts.fira-code
+    nerd-fonts.hack
+    nerd-fonts.hasklug
+    nerd-fonts.jetbrains-mono
   ];
 }
