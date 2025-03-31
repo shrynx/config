@@ -42,6 +42,7 @@
       "calendr"
       "topnotch"
       "claude"
+      "notion"
     ];
 
     # Mac App Store applications

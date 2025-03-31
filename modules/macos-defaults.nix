@@ -96,6 +96,7 @@
               "Zed"
               "IntelliJ IDEA CE"
               "Mattermost"
+              "Notion"
               "Claude"
             ];
             small-spacer = {
