@@ -22,6 +22,15 @@ module.exports = {
             }
         },
         {
+            // Open any link clicked in Notion in Google Chrome work profile
+            match: ({ opener }) =>
+                opener.bundleId === "notion.id",
+            browser: {
+                name: "Google Chrome",
+                profile: "Profile 1"
+            }
+        },
+        {
             // Open meridia.* urls in Google Chrome work profile
             match: [
                 "meridia*", // match meridia urls
