@@ -1,0 +1,102 @@
+[alias]
+    st = status -s
+    cl = clone
+    co = checkout
+    cb = checkout -b
+    aa = add .
+    cm = commit -m
+    ca = commit --amend
+    p = push
+    pf = push --force
+    ri = rebase -i
+    ir = "!f() { git rebase -i HEAD~$1; }; f"
+    rt = "!f() { git reset --soft HEAD~$1; }; f"
+    cp = cherry-pick
+    lg = log --graph --pretty=format:'%C(bold red)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(yellow)%ad%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=human --decorate=full --all
+    diff = diff --word-diff
+    empty = "!git commit -am\"make it so\" --allow-empty"
+    undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
+
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+
+[color "branch"]
+    current = red reverse
+    local = blue
+    remote = green
+
+[color "diff"]
+    meta = yellow
+    frag = magenta
+    old = red bold
+    new = green
+    plain = white
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[column]
+    ui = auto
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = version:refname
+    forceSignAnnotated = false
+
+[init]
+    defaultBranch = main
+
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+
+[push]
+    default = simple
+    autoSetupRemote = true
+    followTags = true
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
+[help]
+    autocorrect = prompt
+
+[commit]
+    verbose = true
+    gpgSign = false
+
+[rerere]
+    enabled = true
+    autoupdate = true
+
+[core]
+    excludesfile = ~/.gitignore
+
+[rebase]
+    autoSquash = true
+    autoStash = true
+    updateRefs = true
+
+[gpg]
+    format = openpgp
+    program = gpg
+
+[gpg "ssh"]
+    program =
+    allowedSignersFile =
+
+[include]
+    path = ~/.personal.gitconfig
+
+[includeIf "gitdir:~/Work/"]
+    path = ~/.work.gitconfig

@@ -20,6 +20,8 @@
   home.file = {
     ".zshrc".source = ./dotfiles/.zshrc;
     ".finicky.js".source = ./dotfiles/.finicky.js;
+    ".gitconfig".source = ./dotfiles/.gitconfig;
+    ".gitignore".source = ./dotfiles/.gitignore;
     ".config" = {
       source = ./dotfiles/config;
       recursive = true;
