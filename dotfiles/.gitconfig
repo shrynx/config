@@ -1,0 +1,105 @@
+[user]
+	email = shriyansbhatnagar@gmail.com
+	name = shrynx
+	signingKey = 
+
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+
+[color "branch"]
+    current = red reverse
+    local = blue
+    remote = green
+
+[color "diff"]
+    meta = yellow
+    frag = magenta
+    old = red bold
+    new = green
+    plain = white
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[alias]
+st = status -s
+cl = clone
+ci = commit
+co = checkout
+br = branch
+r = reset
+cp = cherry-pick
+gr = grep -Ii
+
+diff = diff --word-diff
+branch = branch -ra
+grep = grep -Ii
+bra = branch -ra
+ai = add --interactive
+f = "!git ls-files | grep -i"
+cm = commit -m
+cma = commit -a -m
+ca = commit --amend
+amend = commit --amend
+caa = commit -a --amend -C HEAD
+ls = log --pretty=format:"%C(green)%h\\ %C(yellow)[%ad]%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --date=relative
+ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [a:%an,c:%cn]" --decorate --numstat
+lc  = "!f() { git ll "$1"^.."$1"; }; f"
+lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+fl = log -u
+filelog = log -u
+d = diff --word-diff
+dc = diff --cached
+dlc = diff --cached HEAD^
+dr  = "!f() { git diff -w "$1"^.."$1"; }; f"
+diffr  = "!f() { git diff "$1"^.."$1"; }; f"
+r1 = reset HEAD^
+r2 = reset HEAD^^
+rh = reset --hard
+rh1 = reset HEAD^ --hard
+rh2 = reset HEAD^^ --hard
+sl = stash list
+sa = stash apply
+ss = stash save
+assume = update-index --assume-unchanged
+unassume = update-index --no-assume-unchanged
+assumed = "!git ls-files -v | grep ^h | cut -c 3-"
+unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
+assumeall = "!git status -s | awk {'print $2'} | xargs git assume"
+sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
+sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
+lasttag = describe --tags --abbrev=0
+lt = describe --tags --abbrev=0
+
+ours = "!f() { git co --ours $@ && git add $@; }; f"
+theirs = "!f() { git co --theirs $@ && git add $@; }; f"
+
+rem="!git config -l | grep remote.*url | tail -n +2"
+
+lap = "!f() { git --git-dir=$1 format-patch -k -1 --stdout $2 | git am -3 -k; }; f"
+
+last = "!gvim $(git show HEAD --format="" --name-only | grep -e .*md$ | xargs)"
+newmd = "!gvim $(git status -s | awk {'print $2'})"
+
+empty = "!git commit -am\"make it so\" --allow-empty"
+
+la = "!git config -l | grep alias | cut -c 7-"
+gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
+done = "!f() { git branch | grep "$1" | cut -c 3- | grep -v done | xargs -I{} git branch -m {} done-{}; }; f"
+wl = worktree list
+undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"	
+
+[gpg]
+	format = openpgp
+	program = gpg
+[commit]
+	gpgSign = false
+[tag]
+	forceSignAnnotated = false
+[gpg "ssh"]
+	program = 
+	allowedSignersFile = 
