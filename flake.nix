@@ -28,7 +28,7 @@
   };
 
   outputs =
-    inputs@{
+    {
       self,
       nix-darwin,
       mac-app-util,
@@ -36,7 +36,6 @@
       homebrew-core,
       homebrew-cask,
       homebrew-pakerwreah,
-      nixpkgs,
       home-manager,
       ...
     }:
