@@ -33,6 +33,7 @@ in
     zellij
     procs
     sd
+    nushell
 
     # Apps
     customPackages.popcorn-time
