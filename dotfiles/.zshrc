@@ -33,6 +33,7 @@ function mp() {
 
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
+eval "$(atuin init zsh)"
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(~/.docker/completions $fpath)
