@@ -31,6 +31,7 @@ in
     procs
     sd
     nushell
+    atuin
 
     # Apps
     customPackages.popcorn-time
