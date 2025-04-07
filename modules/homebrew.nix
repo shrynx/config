@@ -39,6 +39,7 @@
       "topnotch"
       "claude"
       "notion"
+      "loom"
     ];
 
     # Mac App Store applications
