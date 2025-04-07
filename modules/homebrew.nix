@@ -38,6 +38,7 @@
       "calendr"
       "topnotch"
       "claude"
+      "loom"
     ];
 
     # Mac App Store applications
