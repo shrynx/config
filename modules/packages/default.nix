@@ -32,6 +32,7 @@ in
     sd
     nushell
     atuin
+    fzf
 
     # Apps
     customPackages.popcorn-time
