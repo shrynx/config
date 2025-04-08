@@ -34,6 +34,9 @@ function mp() {
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
+source <(fzf --zsh)
+export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'"
+export FZF_DEFAULT_COMMAND="fd --type f"
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(~/.docker/completions $fpath)
