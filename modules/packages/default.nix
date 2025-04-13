@@ -37,7 +37,6 @@ in
     starship
     lsd
     bat
-    eza
     dust
     zellij
     procs
@@ -45,6 +44,7 @@ in
     nushell
     atuin
     fzf
+    wget
     darwin.trash
 
     # Apps
