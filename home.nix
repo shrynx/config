@@ -21,6 +21,10 @@
     ".finicky.js".source = ./dotfiles/.finicky.js;
     ".gitconfig".source = ./dotfiles/.gitconfig;
     ".gitignore".source = ./dotfiles/.gitignore;
+    ".warp" = {
+      source = ./dotfiles/warp;
+      recursive = true;
+    };
     ".config" = {
       source = ./dotfiles/config;
       recursive = true;
@@ -64,6 +68,12 @@
 
   # Enable home-manager
   programs.home-manager.enable = true;
+
+  # Catppuccin module
+  catppuccin = {
+    enable = true;
+    flavor = "macchiato";
+  };
 
   # ZSH configuration
   programs.zsh = {

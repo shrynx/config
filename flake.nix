@@ -11,6 +11,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix";
     mac-app-util.url = "github:hraban/mac-app-util";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     homebrew-core = {
@@ -37,6 +38,7 @@
       homebrew-cask,
       homebrew-pakerwreah,
       home-manager,
+      catppuccin,
       ...
     }:
     let
@@ -80,7 +82,12 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.${username} = import ./home.nix;
+            home-manager.users.${username} = {
+                imports = [
+                    ./home.nix
+                    catppuccin.homeModules.catppuccin
+                ];
+            };
             home-manager.extraSpecialArgs = { inherit common; };
           }
 

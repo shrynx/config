@@ -35,7 +35,13 @@ eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
 source <(fzf --zsh)
-export FZF_DEFAULT_OPTS="--preview 'bat --color=always {}'"
+export FZF_DEFAULT_OPTS="
+--preview 'bat --color=always {}' \
+--color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+--color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+--color=marker:#b7bdf8,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796 \
+--color=selected-bg:#494d64 \
+--color=border:#363a4f,label:#cad3f5"
 export FZF_DEFAULT_COMMAND="fd --type f"
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
