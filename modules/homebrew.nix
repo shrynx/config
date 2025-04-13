@@ -39,6 +39,7 @@
       "topnotch"
       "claude"
       "loom"
+      "gitbutler"
     ];
 
     # Mac App Store applications
