@@ -4,6 +4,7 @@ alias z='clear'
 alias ls='lsd'
 alias ll='ls -hal'
 alias cat='bat'
+alias p = 'procs'
 
 alias p='cd ~/Projects'
 alias w='cd ~/Work'
@@ -43,6 +44,8 @@ export FZF_DEFAULT_OPTS="
 --color=selected-bg:#494d64 \
 --color=border:#363a4f,label:#cad3f5"
 export FZF_DEFAULT_COMMAND="fd --type f"
+
+source <(procs --gen-completion-out bash)
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(~/.docker/completions $fpath)

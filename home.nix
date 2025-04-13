@@ -21,6 +21,7 @@
     ".finicky.js".source = ./dotfiles/.finicky.js;
     ".gitconfig".source = ./dotfiles/.gitconfig;
     ".gitignore".source = ./dotfiles/.gitignore;
+    ".procs.toml".source = ./dotfiles/procs.toml;
     ".warp" = {
       source = ./dotfiles/warp;
       recursive = true;
