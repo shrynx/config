@@ -5,6 +5,7 @@ alias ls='lsd'
 alias ll='ls -hal'
 alias cat='bat'
 alias p = 'procs'
+alias rm='trash'
 
 alias p='cd ~/Projects'
 alias w='cd ~/Work'

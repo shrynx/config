@@ -45,6 +45,7 @@ in
     nushell
     atuin
     fzf
+    darwin.trash
 
     # Apps
     customPackages.popcorn-time
