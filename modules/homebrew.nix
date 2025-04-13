@@ -41,6 +41,7 @@
       "notion"
       "loom"
       "gitbutler"
+      "kitty"
     ];
 
     # Mac App Store applications

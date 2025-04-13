@@ -22,6 +22,7 @@
     ".gitconfig".source = ./dotfiles/.gitconfig;
     ".gitignore".source = ./dotfiles/.gitignore;
     ".procs.toml".source = ./dotfiles/procs.toml;
+    ".hushlogin".source = ./dotfiles/.hushlogin;
     ".warp" = {
       source = ./dotfiles/warp;
       recursive = true;
