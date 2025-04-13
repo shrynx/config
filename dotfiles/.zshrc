@@ -1,10 +1,11 @@
 export PATH="/opt/homebrew:$PATH"
 
-alias z='clear'
+alias k='clear'
 alias ls='lsd'
 alias ll='ls -hal'
 alias cat='bat'
-alias p = 'procs'
+alias rg='ripgrep'
+alias pcs='procs'
 alias rm='trash'
 
 alias p='cd ~/Projects'
@@ -45,7 +46,9 @@ function f() {
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
+source <(procs --gen-completion-out bash)
 source <(fzf --zsh)
+
 export FZF_DEFAULT_OPTS="
 --preview 'bat --color=always {}' \
 --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
@@ -54,17 +57,11 @@ export FZF_DEFAULT_OPTS="
 --color=selected-bg:#494d64 \
 --color=border:#363a4f,label:#cad3f5"
 export FZF_DEFAULT_COMMAND="fd --type f"
-
-source <(procs --gen-completion-out bash)
-
-function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
+export FZF_CTRL_R_OPTS="
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --preview ''
+  --header 'Press CTRL-Y to copy command into clipboard'"
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(~/.docker/completions $fpath)
