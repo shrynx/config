@@ -39,6 +39,7 @@ in
     bat
     dust
     zellij
+    zoxide
     procs
     sd
     nushell

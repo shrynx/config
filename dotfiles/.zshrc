@@ -46,6 +46,7 @@ function f() {
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 eval "$(atuin init zsh)"
+eval "$(zoxide init zsh)"
 source <(procs --gen-completion-out bash)
 source <(fzf --zsh)
 
