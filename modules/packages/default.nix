@@ -22,6 +22,18 @@ in
     nixfmt-rfc-style
 
     # Command-line utilities
+    # yazi utils
+    file
+    ffmpeg
+    p7zip
+    jq
+    poppler
+    fd
+    ripgrep
+    resvg
+    imagemagick
+
+    yazi
     starship
     lsd
     bat
