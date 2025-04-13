@@ -40,6 +40,7 @@
       "claude"
       "notion"
       "loom"
+      "gitbutler"
     ];
 
     # Mac App Store applications
