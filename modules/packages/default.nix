@@ -19,6 +19,7 @@ in
     devbox
     direnv
     nixd
+    nil
     nixfmt-rfc-style
 
     # Command-line utilities
