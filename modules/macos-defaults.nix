@@ -88,13 +88,9 @@
               "Google Chrome"
               "GitKraken"
               "Ghostty"
-              "Visual Studio Code"
               "Cursor"
               "Zed"
-              "IntelliJ IDEA CE"
               "Mattermost"
-              "Notion"
-              "Claude"
             ];
             small-spacer = {
               spacer = {
