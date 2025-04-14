@@ -42,6 +42,7 @@
       "gitbutler"
       "kitty"
       "ghostty"
+      "huly"
     ];
 
     # Mac App Store applications
