@@ -18,7 +18,7 @@ alias ..='cd ..'
 alias ...='cd ...'
 alias ....='cd ....'
 
-export EDITOR="code --wait"
+export EDITOR="zed"
 alias vim='nvim'
 
 alias config:reload='darwin-rebuild switch --flake ~/config && source ~/.zshrc'

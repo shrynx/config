@@ -85,6 +85,7 @@
 
 [core]
     excludesfile = ~/.gitignore
+    editor = zed
 
 [rebase]
     autoSquash = true
