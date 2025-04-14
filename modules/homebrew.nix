@@ -42,6 +42,7 @@
       "loom"
       "gitbutler"
       "kitty"
+      "ghostty"
     ];
 
     # Mac App Store applications
