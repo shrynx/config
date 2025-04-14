@@ -81,6 +81,7 @@
 
 [core]
     excludesfile = ~/.gitignore
+    editor = nvim -f
 
 [rebase]
     autoSquash = true
