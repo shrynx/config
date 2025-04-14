@@ -87,7 +87,7 @@
               "Spotify"
               "Google Chrome"
               "GitKraken"
-              "Warp"
+              "Ghostty"
               "Visual Studio Code"
               "Cursor"
               "Zed"
