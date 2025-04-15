@@ -48,6 +48,7 @@ in
     fzf
     wget
     darwin.trash
+    asciinema
 
     # Apps
     customPackages.popcorn-time
