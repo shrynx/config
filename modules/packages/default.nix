@@ -14,7 +14,7 @@ in
   environment.systemPackages = with pkgs; [
     # Development tools
     git
-    neovim
+    customPackages.neovim-wrapped
     devenv
     devbox
     direnv
