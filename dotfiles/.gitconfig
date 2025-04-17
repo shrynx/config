@@ -13,9 +13,16 @@
     rt = "!f() { git reset --soft HEAD~$1; }; f"
     cp = cherry-pick
     lg = log --graph --pretty=format:'%C(bold red)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(yellow)%ad%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=human --decorate=full --all
+    lf = lg -p
+    lc = log -p --name-only --pretty=oneline --abbrev-commit --date=human
     diff = diff --word-diff
     empty = "!git commit -am\"make it so\" --allow-empty"
     undo = "!f() { git reset --hard $(git rev-parse --abbrev-ref HEAD)@{${1-1}}; }; f"
+    ws = "!f() { branch=\"${1:-HEAD}\"; base=\"${2:-main}\"; for c in $(git rev-list --reverse \"$base..$branch\"); do git checkout \"$c\" && echo \"🔍 Commit $c\" && read -p \"Next...\"; done; echo \"🔁 Returning to $branch\"; git checkout \"$branch\"; }; f"
+    walk = "!f() { orig=$(git symbolic-ref --short HEAD); branch=\"${1:-$orig}\"; base=\"${2:-main}\"; tmp=\"walk-temp-$$\"; git checkout -b \"$tmp\" \"$branch\" && for c in $(git rev-list --reverse \"$base..$tmp\"); do git checkout \"$c\" && msg=$(git log -1 --pretty=%B) && git reset --soft HEAD~1 && echo \"🔍 Commit $c (soft reset)\" && read -p \"Next (will re-commit)...\" && git commit --reuse-message=HEAD@{1}; done; echo \"🔁 Returning to $orig\" && git checkout \"$orig\" && git branch -D \"$tmp\"; }; f"
+
+[advice]
+    detachedHead = false
 
 [color]
     branch = auto
