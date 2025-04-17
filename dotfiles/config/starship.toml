@@ -13,6 +13,7 @@ $fill\
 $fill\
 $python\
 $nodejs\
+$deno\
 $c\
 $rust\
 $golang\
@@ -26,6 +27,13 @@ $nim\
 $gradle\
 $elm\
 $julia\
+$lua\
+$erlang\
+$gleam\
+$ocaml\
+$purescript\
+$typst\
+$pulumi\
 $nix_shell\
 $direnv\
 $aws\
@@ -33,7 +41,6 @@ $cmd_duration\
 $time\
 $line_break\
 $character"""
-
 
 add_newline = true
 palette = "catppuccin_macchiato"
@@ -79,9 +86,20 @@ symbol = "\u2500"
 success_symbol = '[λ](bold fg:flamingo)[λ](bold fg:sapphire)[λ](bold fg:green)[λ](bold fg:peach)[λ](bold fg:mauve)'
 error_symbol   = '[λ](bold fg:flamingo)[λ](bold fg:sapphire)[λ](bold fg:green)[λ](bold fg:peach)[λ](bold fg:mauve)'
 
+[username]
+show_always = false
+style_user = "bg:peach fg:base"
+style_root = "bg:peach fg:base"
+format = '[  $user ]($style)'
+disabled = false
+
+[hostname]
+ssh_only = true
+style = "bg:peach fg:base"
+format = "[  $hostname ]($style)"
 
 [directory]
-style = "bg:peach fg:base"
+style = "bg:mauve fg:base"
 format = "[  $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -106,19 +124,6 @@ disabled = false
 style = "bg:mantle fg:text"
 format = "[  $time ]($style)"
 time_format = "%H:%M"
-
-[username]
-show_always = true
-style_user = "bg:mauve fg:base"
-style_root = "bg:mauve fg:base"
-format = '[  $user ]($style)'
-disabled = false
-
-[hostname]
-ssh_only = true
-style = "bg:mauve fg:base"
-format = "[  $hostname ]($style)"
-
 
 # ┌─────────────────────────┐
 # │  Programming Languages  │
@@ -184,6 +189,11 @@ symbol = ""
 style = "bg:green fg:base"
 format = "[ $symbol ($version) ]($style)"
 
+[deno]
+symbol = ""
+style = "bg:green fg:base"
+format = "[ $symbol ($version) ]($style)"
+
 [perl]
 symbol = ""
 style = "bg:pink fg:base"
@@ -224,6 +234,36 @@ symbol = ""
 style = "bg:yellow fg:base"
 format = "[ $symbol ($version) ]($style)"
 
+[lua]
+symbol = ""
+style = "bg:blue fg:base"
+format = "[ $symbol ($version) ]($style)"
+
+[erlang]
+symbol = ""
+style = "bg:red fg:base"
+format = "[ $symbol ($version) ]($style)"
+
+[gleam]
+symbol = "󱘖"
+style = "bg:lavender fg:base"
+format = "[ $symbol ($version) ]($style)"
+
+[ocaml]
+symbol = ""
+style = "bg:mauve fg:base"
+format = "[ $symbol ($version) ]($style)"
+
+[purescript]
+symbol = ""
+style = "bg:sky fg:base"
+format = "[ $symbol ($version) ]($style)"
+
+[typst]
+symbol = "󱘎"
+style = "bg:blue fg:base"
+format = "[ $symbol ($version) ]($style)"
+
 # ┌──────────────┐
 # │   Tooling    │
 # └──────────────┘
@@ -246,4 +286,9 @@ format = "[ $symbol ]($style)"
 [terraform]
 symbol = "󰡼"
 style = "bg:maroon fg:base"
+format = "[ $symbol ($version) ]($style)"
+
+[pulumi]
+symbol = "󱄨"
+style = "bg:flamingo fg:base"
 format = "[ $symbol ($version) ]($style)"
