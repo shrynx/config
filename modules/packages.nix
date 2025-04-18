@@ -4,7 +4,7 @@
 }:
 let
   # Import custom packages
-  customPackages = import ./custom { inherit pkgs; };
+  customPackages = import ./custom-packages { inherit pkgs; };
 in
 {
   # Nixpkgs configuration
@@ -50,6 +50,7 @@ in
     darwin.trash
     asciinema
     gitui
+    bottom
 
     # Apps
     customPackages.popcorn-time

@@ -15,16 +15,16 @@
     mac-app-util.url = "github:hraban/mac-app-util";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     homebrew-core = {
-        url = "github:homebrew/homebrew-core";
-        flake = false;
+      url = "github:homebrew/homebrew-core";
+      flake = false;
     };
     homebrew-cask = {
-        url = "github:homebrew/homebrew-cask";
-        flake = false;
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
     };
     homebrew-pakerwreah = {
-        url = "github:pakerwreah/homebrew-calendr";
-        flake = false;
+      url = "github:pakerwreah/homebrew-calendr";
+      flake = false;
     };
   };
 
@@ -83,17 +83,17 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.${username} = {
-                imports = [
-                    ./home.nix
-                    catppuccin.homeModules.catppuccin
-                ];
+              imports = [
+                ./home.nix
+                catppuccin.homeModules.catppuccin
+              ];
             };
             home-manager.extraSpecialArgs = { inherit common; };
           }
 
           # Import all modular configurations
           ./modules/homebrew.nix
-          ./modules/packages
+          ./modules/packages.nix
           ./modules/system-config.nix
           ./modules/macos-defaults.nix
 

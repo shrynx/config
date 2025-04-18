@@ -11,8 +11,9 @@ This configuration follows a simple modular structure:
 ├── lib
 │   └── common.nix             # Common variables (username, hostname, etc.)
 ├── modules
+│   ├── custom-packages        # All nix custom packages
 │   ├── homebrew.nix           # All Homebrew-related configuration
-│   ├── packages               # Nix packages configuration
+│   ├── packages.nix           # Nix packages configuration
 │   ├── macos-defaults.nix     # Macos system defaults and preferences
 │   └── system-config.nix      # Nix system configuration
 ├── flake.nix                  # Main flake entry point
