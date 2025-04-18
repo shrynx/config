@@ -96,9 +96,8 @@
           ./modules/packages.nix
           ./modules/system-config.nix
           ./modules/macos-defaults.nix
-
-          # Set Git commit hash for darwin-version
           {
+            # Set Git commit hash for darwin-version
             system.configurationRevision = self.rev or self.dirtyRev or null;
           }
         ];

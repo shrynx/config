@@ -43,6 +43,7 @@
       "kitty"
       "ghostty"
       "huly"
+      "raycast"
     ];
 
     # Mac App Store applications

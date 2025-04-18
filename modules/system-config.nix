@@ -22,6 +22,11 @@
   # System state version
   system.stateVersion = 6;
 
+  system.activationScripts.postUserActivation.text = ''
+    # Following line should allow us to avoid a logout/login cycle when changing settings
+    /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+  '';
+
   # The platform the configuration will be used on
   nixpkgs.hostPlatform = common.system;
 
