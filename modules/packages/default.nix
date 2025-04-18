@@ -49,6 +49,7 @@ in
     wget
     darwin.trash
     asciinema
+    gitui
 
     # Apps
     customPackages.popcorn-time
