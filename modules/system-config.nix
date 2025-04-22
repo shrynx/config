@@ -5,7 +5,13 @@
 
 {
   # Necessary for using flakes on this system
-  nix.settings.experimental-features = "nix-command flakes";
+  nix.settings = {
+    experimental-features = "nix-command flakes";
+    trusted-users = [
+      "root"
+      common.username
+    ];
+  };
 
   # Enable alternative shell support in nix-darwin
   programs.zsh.enable = true;
