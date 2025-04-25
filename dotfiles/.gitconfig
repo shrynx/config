@@ -80,7 +80,7 @@
 
 [commit]
     verbose = true
-    gpgSign = false
+    gpgSign = true
 
 [rerere]
     enabled = true
@@ -96,12 +96,12 @@
     updateRefs = true
 
 [gpg]
-    format = openpgp
-    program = gpg
+    format = ssh
+    program = /usr/bin/ssh-keygen
 
 [gpg "ssh"]
-    program =
-    allowedSignersFile =
+    program = /usr/bin/ssh-keygen
+    allowedSignersFile = ~/.ssh/allowed_signers
 
 [include]
     path = ~/.personal.gitconfig

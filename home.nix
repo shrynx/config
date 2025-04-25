@@ -60,6 +60,18 @@ in
           path = "${sshDir}/id_work.pub";
           mode = "0644";
         };
+        "allowed_signers" = {
+          path = "${sshDir}/allowed_signers";
+          mode = "0644";
+        };
+        "personal_gitconfig" = {
+          path = "${config.home.homeDirectory}/.personal.gitconfig";
+          mode = "0755";
+        };
+        "work_gitconfig" = {
+          path = "${config.home.homeDirectory}/.work.gitconfig";
+          mode = "0755";
+        };
       };
     };
 
