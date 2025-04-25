@@ -12,6 +12,10 @@ in
 
   # CLI tools and utilities installed system-wide
   environment.systemPackages = with pkgs; [
+    # secrets management tools
+    sops
+    age
+
     # Development tools
     git
     customPackages.neovim-wrapped

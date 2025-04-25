@@ -2,20 +2,18 @@
   pkgs,
   lib,
   common,
+  config,
   ...
 }:
-
+let
+  sopsAgeKeyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+in
 {
+
   home.username = common.username;
   home.homeDirectory = common.homeDirectory;
-  home.stateVersion = "23.05"; # Please read the comment before changing.
 
-  # Home-manager packages
-  home.packages = [
-    pkgs.mysides
-  ];
-
-  # Dotfiles
+  ## Dotfiles
   home.file = {
     ".zshrc".source = ./dotfiles/.zshrc;
     ".finicky.js".source = ./dotfiles/.finicky.js;
@@ -31,61 +29,118 @@
       source = ./dotfiles/config;
       recursive = true;
     };
+    ".ssh" = {
+      source = ./dotfiles/ssh;
+      recursive = true;
+    };
   };
 
-  # Directory creation and sidebar setup
-  home.activation = {
-    createUserDirectories = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      # Create directories if they don't exist
-      mkdir -p "$HOME/Work" "$HOME/Art" "$HOME/Projects" "$HOME/Pictures/screenshots"
-    '';
+  ## SOPS secrets
+  sops =
+    let
+      sshDir = "${config.home.homeDirectory}/.ssh";
+    in
+    {
+      defaultSopsFile = ./secrets.yaml;
+      age.keyFile = sopsAgeKeyFile;
+      secrets = {
+        "id_personal" = {
+          path = "${sshDir}/id_personal";
+          mode = "0600";
+        };
+        "id_personal_pub" = {
+          path = "${sshDir}/id_personal.pub";
+          mode = "0644";
+        };
+        "id_work" = {
+          path = "${sshDir}/id_work";
+          mode = "0600";
+        };
+        "id_work_pub" = {
+          path = "${sshDir}/id_work.pub";
+          mode = "0644";
+        };
+      };
+    };
 
-    addToSidebar = lib.hm.dag.entryAfter [ "createUserDirectories" ] ''
-      MYSIDES="${pkgs.mysides}/bin/mysides"
-
-      # Remove all items first
-      for ITEM in "Recents" "Documents" "Home" "Work" "Projects" "Art" "Screenshots"; do
-        $MYSIDES remove "$ITEM" >/dev/null 2>&1 || true
-      done
-
-      # Add items back with proper paths
-      $MYSIDES add "Home" "file://$HOME" >/dev/null 2>&1 || true
-
-      # Add folders in home directory
-      for ITEM in "Work" "Projects" "Art"; do
-        $MYSIDES add "$ITEM" "file://$HOME/$ITEM" >/dev/null 2>&1 || true
-      done
-
-      # Add special locations
-      $MYSIDES add "Screenshots" "file://$HOME/Pictures/screenshots" >/dev/null 2>&1 || true
-    '';
+  ## Session environment
+  home.sessionVariables = {
+    SOPS_AGE_KEY_FILE = sopsAgeKeyFile;
   };
 
-  # Session variables and paths
-  home.sessionVariables = { };
-  home.sessionPath = [
-    "/run/current-system/sw/bin"
-    "$HOME/.nix-profile/bin"
-  ];
+  ## Create directories & customize sidebar
+  home.activation =
+    let
+      mysidesBin = "${pkgs.mysides}/bin/mysides";
+      homeDir = config.home.homeDirectory;
+      sidebarItems = [
+        {
+          name = "Home";
+          path = "${homeDir}";
+        }
+        {
+          name = "Work";
+          path = "${homeDir}/Work";
+        }
+        {
+          name = "Projects";
+          path = "${homeDir}/Projects";
+        }
+        {
+          name = "Art";
+          path = "${homeDir}/Art";
+        }
+        {
+          name = "Screenshots";
+          path = "${homeDir}/Pictures/screenshots";
+        }
+      ];
+      createDirs = ''mkdir -p ${lib.concatStringsSep " " (map (item: item.path) sidebarItems)}'';
+      removeSidebarScript = lib.concatStringsSep "\n" (
+        map (item: "${mysidesBin} remove ${item.name} >/dev/null 2>&1 || true") sidebarItems
+      );
+      addSidebarScript = lib.concatStringsSep "\n" (
+        map (
+          item: ''${mysidesBin} add ${item.name} "file://${item.path}" >/dev/null 2>&1 || true''
+        ) sidebarItems
+      );
+    in
+    {
+      createUserDirectories = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        ${createDirs}
+      '';
 
-  # Enable home-manager
-  programs.home-manager.enable = true;
+      addToSidebar = lib.hm.dag.entryAfter [ "createUserDirectories" ] ''
+        ${removeSidebarScript}
+        ${addSidebarScript}
+      '';
+    };
 
-  # Catppuccin module
+  ## Catppuccin Theme
   catppuccin = {
     enable = true;
     flavor = "macchiato";
   };
 
-  # ZSH configuration
+  ## Session path
+  home.sessionPath = [
+    "/run/current-system/sw/bin"
+    "$HOME/.nix-profile/bin"
+  ];
+
+  ## ZSH shell
   programs.zsh = {
     enable = true;
     initExtra = ''
-      # Add any additional configurations here
       export PATH=/run/current-system/sw/bin:$HOME/.nix-profile/bin:$PATH
+      . '$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh'
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
       fi
     '';
   };
+
+  programs.home-manager.enable = true;
+
+  home.stateVersion = "23.05";
 }

@@ -1,0 +1,10 @@
+# Work-specific
+Host *
+  IdentityFile ~/.ssh/id_work
+  IdentitiesOnly yes
+  Match exec "pwd | grep -q ^$HOME/Work"
+
+# Default identity
+Host *
+  IdentityFile ~/.ssh/id_personal
+  IdentitiesOnly yes

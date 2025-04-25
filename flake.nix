@@ -11,6 +11,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     catppuccin.url = "github:catppuccin/nix";
     mac-app-util.url = "github:hraban/mac-app-util";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
@@ -32,6 +36,7 @@
     {
       self,
       nix-darwin,
+      sops-nix,
       mac-app-util,
       nix-homebrew,
       homebrew-core,
@@ -86,9 +91,14 @@
               imports = [
                 ./home.nix
                 catppuccin.homeModules.catppuccin
+                sops-nix.homeManagerModules.sops
               ];
             };
-            home-manager.extraSpecialArgs = { inherit common; };
+
+            home-manager.extraSpecialArgs = {
+              inherit common;
+              inherit sops-nix;
+            };
           }
 
           # Import all modular configurations
