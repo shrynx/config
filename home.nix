@@ -6,7 +6,9 @@
   ...
 }:
 let
-  sopsAgeKeyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+  homeDir = config.home.homeDirectory;
+  sshDir = "${homeDir}/.ssh";
+  sopsAgeKeyFile = "${homeDir}/.config/sops/age/keys.txt";
 in
 {
 
@@ -22,58 +24,54 @@ in
     ".procs.toml".source = ./dotfiles/.procs.toml;
     ".hushlogin".source = ./dotfiles/.hushlogin;
     ".warp" = {
-      source = ./dotfiles/warp;
+      source = ./dotfiles/.warp;
       recursive = true;
     };
     ".config" = {
-      source = ./dotfiles/config;
+      source = ./dotfiles/.config;
       recursive = true;
     };
     ".ssh" = {
-      source = ./dotfiles/ssh;
+      source = ./dotfiles/.ssh;
       recursive = true;
     };
   };
 
   ## SOPS secrets
-  sops =
-    let
-      sshDir = "${config.home.homeDirectory}/.ssh";
-    in
-    {
-      defaultSopsFile = ./secrets.yaml;
-      age.keyFile = sopsAgeKeyFile;
-      secrets = {
-        "id_personal" = {
-          path = "${sshDir}/id_personal";
-          mode = "0600";
-        };
-        "id_personal_pub" = {
-          path = "${sshDir}/id_personal.pub";
-          mode = "0644";
-        };
-        "id_work" = {
-          path = "${sshDir}/id_work";
-          mode = "0600";
-        };
-        "id_work_pub" = {
-          path = "${sshDir}/id_work.pub";
-          mode = "0644";
-        };
-        "allowed_signers" = {
-          path = "${sshDir}/allowed_signers";
-          mode = "0644";
-        };
-        "personal_gitconfig" = {
-          path = "${config.home.homeDirectory}/.personal.gitconfig";
-          mode = "0755";
-        };
-        "work_gitconfig" = {
-          path = "${config.home.homeDirectory}/.work.gitconfig";
-          mode = "0755";
-        };
+  sops = {
+    defaultSopsFile = ./secrets.yaml;
+    age.keyFile = sopsAgeKeyFile;
+    secrets = {
+      "id_personal" = {
+        path = "${sshDir}/id_personal";
+        mode = "0600";
+      };
+      "id_personal_pub" = {
+        path = "${sshDir}/id_personal.pub";
+        mode = "0644";
+      };
+      "id_work" = {
+        path = "${sshDir}/id_work";
+        mode = "0600";
+      };
+      "id_work_pub" = {
+        path = "${sshDir}/id_work.pub";
+        mode = "0644";
+      };
+      "allowed_signers" = {
+        path = "${sshDir}/allowed_signers";
+        mode = "0644";
+      };
+      "personal_gitconfig" = {
+        path = "${homeDir}/.personal.gitconfig";
+        mode = "0755";
+      };
+      "work_gitconfig" = {
+        path = "${homeDir}/.work.gitconfig";
+        mode = "0755";
       };
     };
+  };
 
   ## Session environment
   home.sessionVariables = {
@@ -84,7 +82,6 @@ in
   home.activation =
     let
       mysidesBin = "${pkgs.mysides}/bin/mysides";
-      homeDir = config.home.homeDirectory;
       sidebarItems = [
         {
           name = "Home";
