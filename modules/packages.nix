@@ -55,6 +55,7 @@ in
     asciinema
     gitui
     bottom
+    just
 
     # Apps
     customPackages.popcorn-time
