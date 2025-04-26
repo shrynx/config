@@ -143,7 +143,7 @@ in
   ## ZSH shell
   programs.zsh = {
     enable = true;
-    initExtra = ''
+    initContent = ''
       export PATH=/run/current-system/sw/bin:$HOME/.nix-profile/bin:$PATH
       . '$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh'
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
