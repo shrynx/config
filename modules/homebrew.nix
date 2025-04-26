@@ -10,6 +10,7 @@
     # CLI tools from Homebrew
     brews = [
       "mas"
+      "bitwarden-cli"
     ];
 
     # GUI applications from Homebrew
