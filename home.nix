@@ -16,26 +16,22 @@ in
   home.homeDirectory = common.homeDirectory;
 
   ## Dotfiles
-  home.file = {
-    ".zshrc".source = ./dotfiles/.zshrc;
-    ".finicky.js".source = ./dotfiles/.finicky.js;
-    ".gitconfig".source = ./dotfiles/.gitconfig;
-    ".gitignore".source = ./dotfiles/.gitignore;
-    ".procs.toml".source = ./dotfiles/.procs.toml;
-    ".hushlogin".source = ./dotfiles/.hushlogin;
-    ".warp" = {
-      source = ./dotfiles/.warp;
-      recursive = true;
-    };
-    ".config" = {
-      source = ./dotfiles/.config;
-      recursive = true;
-    };
-    ".ssh" = {
-      source = ./dotfiles/.ssh;
-      recursive = true;
-    };
-  };
+  home.file =
+    let
+      dotfilesPath = ./dotfiles;
+    in
+    lib.mapAttrs (
+      name: type:
+      if type == "directory" then
+        {
+          source = "${dotfilesPath}/${name}";
+          recursive = true;
+        }
+      else
+        {
+          source = "${dotfilesPath}/${name}";
+        }
+    ) (builtins.readDir dotfilesPath);
 
   ## SOPS secrets
   sops = {
