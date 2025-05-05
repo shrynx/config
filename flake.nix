@@ -15,7 +15,6 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix";
     mac-app-util.url = "github:hraban/mac-app-util";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     homebrew-core = {
@@ -43,7 +42,6 @@
       homebrew-cask,
       homebrew-pakerwreah,
       home-manager,
-      catppuccin,
       ...
     }:
     let
@@ -90,7 +88,6 @@
             home-manager.users.${username} = {
               imports = [
                 ./home.nix
-                catppuccin.homeModules.catppuccin
                 sops-nix.homeManagerModules.sops
               ];
             };

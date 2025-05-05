@@ -125,12 +125,6 @@ in
       '';
     };
 
-  ## Catppuccin Theme
-  catppuccin = {
-    enable = true;
-    flavor = "macchiato";
-  };
-
   ## Session path
   home.sessionPath = [
     "/run/current-system/sw/bin"
